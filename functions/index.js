@@ -1,8 +1,14 @@
-import functions from 'firebase-functions'
-
-import express from 'express'
+import functions from 'firebase-functions';
+import express from 'express';
+import { createUser, getAllUsers, updateUser} from './src/users.js';
 
 const app = express()
+
+app.use(express.json())
+app.post('/users', getAllUsers)
+app.post('/users', createUser)
+//to update 
+app.patch('/users/:uid', updateUser)
 
 app.get('/test', (re,res) => res.send('out first cloud API works, MF!'))
 
